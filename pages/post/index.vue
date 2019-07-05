@@ -10,6 +10,7 @@
                     <el-menu-item index="2-4-2">选项2</el-menu-item>
                     <el-menu-item index="2-4-3">选项3</el-menu-item>
                 </el-submenu>
+                123
             </el-submenu>
         </el-menu>
 
