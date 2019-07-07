@@ -1,31 +1,36 @@
 <template>
     <!-- 思路:当图片长度超多三张,显示左右左右排列,否则上下排列 -->
     <!-- 左右排列 -->
-    <el-row type="flex" justify="space-between" align="midedle" class="post-item" v-if="showImg === `sidebar`">
-        <!-- 左边图片 -->
-        <el-row type="flex" align="middle" class="post-cover">
-            <img :src="data.images[0]">
-        </el-row>
-        <div class="post-content">
-            <h4 :title="data.title" class="post-title">
-                {{data.title}}
-            </h4>
-            <p class="data-summary">{{data.summary}}</p>
+    <div>
+        <el-row type="flex" justify="space-between" align="midedle" class="post-item" v-if="showImg === `sidebar`">
+            <!-- 左边图片 -->
+            <el-row type="flex" align="middle" class="post-cover">
+                <img :src="data.images[0]">
+            </el-row>
+            <div class="post-content">
+                <h4 :title="data.title" class="post-title">
+                    {{data.title}}
+                </h4>
+                <p class="data-summary">{{data.summary}}</p>
 
-            <div>
-                <el-row type="flex" justify="space-betwent">
-                    <span class="data-account-defaultAvatar">
-                        <img :src="$axios.defaults.baseURL+data.account.defaultAvatar">
-                    </span>
-                    <span>{{data.cityName}}</span>
-                    <span class="data-account-nickname">{{data.account.nickname}}</span>
-                    <span>{{data.watch || 0}}</span>
-                
-                <span class="post-info-right">{{data.like || 0}}赞</span>
-                </el-row>
+                <div>
+                    <el-row type="flex" justify="space-betwent">
+                        <span class="data-account-defaultAvatar">
+                            <img :src="$axios.defaults.baseURL+data.account.defaultAvatar">
+                        </span>
+                        <span>{{data.cityName}}</span>
+                        <span class="data-account-nickname">{{data.account.nickname}}</span>
+                        <span>{{data.watch || 0}}</span>
+
+                        <span class="post-info-right">{{data.like || 0}}赞</span>
+                    </el-row>
+                </div>
             </div>
-        </div>
-    </el-row>
+        </el-row>
+
+        <!-- 底部排列 -->
+        <el-row type="flex" justify="space-between" align="middle"></el-row>
+    </div>
 </template>
 
 <script>
@@ -38,7 +43,7 @@ export default {
 
     data() {
         return {
-            showImg:`sidebar`
+            showImg: `sidebar`
         };
     }
 };
