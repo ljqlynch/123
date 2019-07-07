@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
     <div class="containers">
         <el-row type="flex" justify="space-around">
@@ -25,67 +23,69 @@
                     </div>
                 </div>
                 <div class="recommenCity">
-                    <h4 class="recommenCity-title">推荐城市</h4>
+                    <h4 class="recommenCity-title">推荐明星</h4>
                     <div class="recommenCity-item">
                         <nuxt-link to="#">
-                            <img
-                                src="../../assets/923cb1b6c9fe29a2a2cbdd83f999c06e.gif"
-                                alt
-                            />
+                            <img src="../../assets/923cb1b6c9fe29a2a2cbdd83f999c06e.gif" alt />
                         </nuxt-link>
                     </div>
                 </div>
                 <!-- 中间部分 -->
             </div>
 
-             <div class=" content">
-                    <!-- 搜索框 -->
-                    <div class="wantgo">
-                        <el-row type="flex" justify="space-between" align="middle" class="wantInput">
-                            <!-- 推荐城市 -->
-                            <input
-                                type="text"
-                                placeholder="请输入你想去的城市"
-                                v-model="searchCity"
-                            />
-                            <i class="el-icon-search"></i>
-                        </el-row>
-                    </div>
-                    <div class="search-recommend">
-                        推荐:
-                        <span
-                            v-for="(item,index) in [`广州`,`上海`,`成都`]"
-                            :key="index"
-                            @click="handleSearch(item)"
-                        >
-                            {{item}} </span>
-                    </div>
-                    <!-- 推荐攻略 -->
-                    <el-row type="flex" justify="space-between" align="middle" class="post-title">
-                        <h4  class="strategy">旅游攻略</h4>
-                        <el-button class="el-buttons">
-                            <i class="el-icon-edit"></i>
-                            <span>写游记</span>
-                        </el-button>
+            <div class=" content">
+                <!-- 搜索框 -->
+                <div class="wantgo">
+                    <el-row type="flex" justify="space-between" align="middle" class="wantInput">
+                        <!-- 推荐城市 -->
+                        <input type="text" placeholder="请输入你想去的城市" v-model="searchCity" />
+                        <i class="el-icon-search"></i>
                     </el-row>
-                    <div class="postContent">
-                        
+                </div>
+                <div class="search-recommend">
+                    推荐:
+                    <span v-for="(item,index) in [`广州`,`上海`,`成都`]" :key="index" @click="handleSearch(item)">
+                        {{item}} </span>
+                </div>
+                <!-- 推荐攻略 -->
+                <el-row type="flex" justify="space-between" align="middle" class="post-title">
+                    <h4 class="strategy">旅游攻略</h4>
+                    <el-button class="el-buttons">
+                        <i class="el-icon-edit"></i>
+                        <span>写游记</span>
+                    </el-button>
+                </el-row>
+                <div class="postContent">
+                    <!-- 筛选 -->
 
-                    </div>
+                    <Postinfo v-for="(item,index) in pageList" :key="index" :data ='item'/>
 
+                    <!-- 分页 -->
+                    <!-- size-change: 显示条数切换触发 -->
+                    <!-- current-change: 切换页数时候触发 -->
+                    <!-- current-page: 当前页数 -->
+                    <!-- total: 总条数 -->
+                    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pageIndex" :page-sizes="[3, 6, 9, 12]" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+                    </el-pagination>
 
-             </div>
-                
+                </div>
+            </div>
         </el-row>
     </div>
-
 </template>
 
 <script>
 // import PostInfo from "@/components/post/postInfo.vue";
+import Postinfo from '@/components/post/postInfo'
 export default {
+
+    components: {
+        Postinfo
+    },
     data() {
+
         return {
+
             //激活active
             currentNum: 100,
             showItem: false,
@@ -119,17 +119,16 @@ export default {
         //获取攻略文章
         getPost() {
             this.$axios({
-                url: "/posts"
+                url: '/posts'
             }).then(res => {
-                console.log(res);
+                console.log(res)
                 const {
-                    data,
-                    total
-                } = res.data;
-                this.postInfo = data;
+                    total,data
+                } = res.data
                 this.total = total;
-                this.pageList = data.slice(0, 3);
-            });
+                this.postInfo = data;
+                this.pageList = data.slice(0,3)
+            })
         },
         //当鼠标进入推荐城市时
         handleCome(index) {
@@ -157,8 +156,9 @@ export default {
         //显示分页数据
         setDataList() {
             this.pageList = this.postInfo.slice(
-                (this.pageIndex - 1) * this.pageSize,
-                this.pageIndex * this.pageSize
+                (this.pageIndex-1) *pageSize,
+                this.pageIndex *pageSize,
+
             );
         }
     },
@@ -362,4 +362,3 @@ export default {
     }
 }
 </style>
->>>>>>> 60553d000c0f36ec1520d7955f7059b93004b7f0
