@@ -10,9 +10,17 @@
             <h4 :title="data.title" class="post-title">
                 {{data.title}}
             </h4>
+            <p>{{data.summary}}</p>
+            <div>
+                <span>{{data.cityName}}</span>
+                <span>{{data.account.nickname}}</span>
+                <span>{{data.watch || 0}}</span>
+                <span class="post-info-right">{{data.like || 0}}赞</span>
+            </div>
         </div>
     </el-row>
 </template>
+
 <script>
 export default {
     props: {
@@ -30,18 +38,23 @@ export default {
 </script>
 
 <style lang="less">
-.post-item{
+.post-item {
     width: 100%;
     padding: 20px 0;
     border-bottom: 1px #eee solid
 }
+
 .image-text {
     .post-content {
         width: 470px;
+        p {
+            color: #666666
+        }
     }
 
     .post-desc {}
 }
+
 .post-cover {
     width: 220px;
     height: 150px;
