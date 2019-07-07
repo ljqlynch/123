@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <template>
     <div class="containers">
         <el-row type="flex" justify="space-around">
@@ -360,3 +362,4 @@ export default {
     }
 }
 </style>
+>>>>>>> 60553d000c0f36ec1520d7955f7059b93004b7f0
